@@ -1,6 +1,7 @@
 import abstractFactory.CTSide
 import abstractFactory.CTSideFactory
 import abstractFactory.TSideFactory
+import builder.PlayerInventory
 import fabricMethod.M4a4Factory
 import fabricMethod.Shop
 import singleton.DbConnection
@@ -33,6 +34,10 @@ fun main() {
     println("TEAM of CT: ${SWAT.name} and ${FBI.name}")
     SWAT.attack()
     FBI.attack()
+
+    val playerInventory = PlayerInventory.PlayerInventoryBuilder().money(1200).totalGrenades(1).build()
+    playerInventory.showMoney()
+    playerInventory.showGrenades()
 
 
 }
