@@ -3,6 +3,12 @@ import creational.abstractFactory.TSideFactory
 import creational.fabricMethod.M4a4Factory
 import creational.fabricMethod.Shop
 import creational.singleton.DbConnection
+import structual.composite.Directory
+import structual.composite.File
+import structual.decorator.Charm
+import structual.decorator.M4
+import structual.decorator.Skin
+import structual.decorator.Stattrek
 
 
 fun main() {
@@ -38,5 +44,20 @@ fun main() {
     playerInventory.showMoney()
     playerInventory.showGrenades()
 
+    println()
+    println()
 
+    val M4 = M4()
+    val skin = Skin(M4)
+    val stattrek = Stattrek(skin)
+    val charm = Charm(stattrek)
+    charm.display()
+
+    val file1 = File("file1")
+    val file2 = File("file2")
+
+    val directory = Directory("First directory", listOf(file2, file1))
+    val directory2 = Directory("Main directory", listOf(directory, file1))
+
+    directory2.read()
 }
