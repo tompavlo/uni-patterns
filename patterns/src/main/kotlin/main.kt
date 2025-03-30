@@ -9,6 +9,9 @@ import behavioral.observer.UiRoundBox
 import behavioral.strategy.CasualGameMode
 import behavioral.strategy.CompetitiveGameMode
 import behavioral.strategy.GameEngine
+import behavioral.visitor.AWP
+import behavioral.visitor.KillRewardCounterForCompetitiveGameMode
+import behavioral.visitor.Pistol
 import creational.abstractFactory.CTSideFactory
 import creational.abstractFactory.TSideFactory
 import creational.fabricMethod.M4a4Factory
@@ -126,4 +129,13 @@ fun main() {
     connectionTimeoutEvent.setNextGameEventHandler(teamTimeoutEvent)
 
     bombDefusedEvent.handleEvent(GameEvents.TEAM_TIMEOUT)
+
+    val awpVisitor = AWP("AWP")
+    val pistolVisitor = Pistol("USP-S")
+    val visitor = KillRewardCounterForCompetitiveGameMode()
+
+    println("Kill reward for awp " + awpVisitor.accept(visitor))
+    println("Kill reward for pistol " + pistolVisitor.accept(visitor))
+
+    println("That all the patterns!")
 }
