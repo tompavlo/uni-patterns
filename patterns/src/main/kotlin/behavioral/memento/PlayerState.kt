@@ -28,4 +28,9 @@ class PlayerState(
         y = playerStateMemento.y
         z = playerStateMemento.z
     }
+
+    override fun toString(): String {
+        return "PlayerState(health=$health, money=$money, x=$x, y=$y, z=$z)"
+    }
+
 }

@@ -3,6 +3,9 @@ import behavioral.command.BuyMenu
 import behavioral.command.BuyWeaponCommand
 import behavioral.command.Player
 import behavioral.iterator.*
+import behavioral.memento.DemoPlayback
+import behavioral.memento.PlayerState
+import behavioral.memento.PlayerStateMemento
 import behavioral.observer.MoneyBonusCalc
 import behavioral.observer.RoundEngine
 import behavioral.observer.UiRoundBox
@@ -55,7 +58,8 @@ fun main() {
     SWAT.attack()
     FBI.attack()
 
-    val playerInventory = creational.builder.PlayerInventory.PlayerInventoryBuilder().money(1200).totalGrenades(1).build()
+    val playerInventory =
+        creational.builder.PlayerInventory.PlayerInventoryBuilder().money(1200).totalGrenades(1).build()
     playerInventory.showMoney()
     playerInventory.showGrenades()
 
@@ -77,7 +81,6 @@ fun main() {
     directory2.read()
 
 
-
     val player = Player(5000)
     val buyWeaponCommandM4 = BuyWeaponCommand(player, 2800, "M4")
     val buyAWPCommand = BuyWeaponCommand(player, 4700, "AWP")
@@ -93,14 +96,14 @@ fun main() {
 
     val inventory = HoldingInventory(TestClass(), TestClass(), TestClass())
     val iterator = inventory.getIterator()
-    while (!iterator.isDone()){
+    while (!iterator.isDone()) {
         println(iterator.current().toString())
         iterator.next()
 
     }
 
     val graffitInventory = GraffitInventory(Graffiti(), Graffiti(), Graffiti())
-    for (grafitti in graffitInventory){
+    for (grafitti in graffitInventory) {
         println(grafitti.toString())
     }
 
@@ -136,6 +139,18 @@ fun main() {
 
     println("Kill reward for awp " + awpVisitor.accept(visitor))
     println("Kill reward for pistol " + pistolVisitor.accept(visitor))
+
+    val playerMementoPattern = PlayerState(100, 4000, 12, 12, 12)
+    val demoPlayback = DemoPlayback()
+    demoPlayback.addTick(playerMementoPattern.saveState())
+    playerMementoPattern.health = 12
+    playerMementoPattern.money = 2000
+    playerMementoPattern.x = 10
+    playerMementoPattern.z = 10
+    playerMementoPattern.y = 10
+    println(playerMementoPattern)
+    playerMementoPattern.restoreState(demoPlayback.getMemento(0)?: PlayerStateMemento(0, 0, 0, 0, 0))
+    println(playerMementoPattern.toString())
 
     println("That all the patterns!")
 }
