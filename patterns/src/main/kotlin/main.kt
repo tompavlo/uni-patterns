@@ -17,6 +17,7 @@ import behavioral.visitor.KillRewardCounterForCompetitiveGameMode
 import behavioral.visitor.Pistol
 import creational.abstractFactory.CTSideFactory
 import creational.abstractFactory.TSideFactory
+import creational.default_factory_method.CTPlayer
 import creational.fabricMethod.M4a4Factory
 import creational.fabricMethod.Shop
 import creational.singleton.DbConnection
@@ -153,4 +154,10 @@ fun main() {
     println(playerMementoPattern.toString())
 
     println("That all the patterns!")
+
+    println("Now let's look at the revisited patterns")
+
+    val gun = creational.default_factory_method.M4()
+    val ctPlayer = CTPlayer(gun)
+    ctPlayer.makeDamage()
 }

@@ -17,6 +17,8 @@ fun main(args: Array<String>) {
     }
     println(averageFromList(numbers))
     println(numbers.sumOf { it }.div(numbers.size.toDouble()))
+    println(numbers.average())
+    numbers.sort
 
 
     println(words.sortedBy { it.lowercase(Locale.getDefault()) })
@@ -57,8 +59,7 @@ fun main(args: Array<String>) {
 
     println(numbers.distinct().sortedDescending()[1])
 
-    println(numbers.filter { isEven(it) }.maxOf { it })
-
+    println(numbers.filter { isEven(it) }.max())
 
 }
 
