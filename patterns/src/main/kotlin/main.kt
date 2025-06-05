@@ -2,6 +2,7 @@ import behavioral.chain_of_responsibility.*
 import behavioral.command.BuyMenu
 import behavioral.command.BuyWeaponCommand
 import behavioral.command.Player
+import behavioral.execute_around.ScriptLoader
 import behavioral.iterator.*
 import behavioral.memento.DemoPlayback
 import behavioral.memento.PlayerState
@@ -160,4 +161,6 @@ fun main() {
     val gun = creational.default_factory_method.M4()
     val ctPlayer = CTPlayer(gun)
     ctPlayer.makeDamage()
+
+    val scriptLoader = ScriptLoader.use { println("Test") }
 }

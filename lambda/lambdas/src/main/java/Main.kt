@@ -18,7 +18,6 @@ fun main(args: Array<String>) {
     println(averageFromList(numbers))
     println(numbers.sumOf { it }.div(numbers.size.toDouble()))
     println(numbers.average())
-    numbers.sort
 
 
     println(words.sortedBy { it.lowercase(Locale.getDefault()) })

@@ -5,12 +5,13 @@ class ScriptLoader private constructor(){
         fun use(usage: () -> Unit) {
             val engine = ScriptLoader()
             try {
-                engine.initializeScript { usage() }
+                engine.initializeScript { usage.invoke() }
             } finally {
                 println("Cleaned-up engine resource")
             }
         }
     }
 
-    fun initializeScript(script: () -> Unit) {}
+    fun initializeScript(script: () -> Unit) {
+    }
 }
